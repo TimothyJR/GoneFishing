@@ -34,6 +34,11 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+# ============================ #
+# Large Assets/AssetStoreTools #
+# ============================ #
+*.fbx
+*.png
 
 # =========== #
 # ShaderForge #
@@ -47,3 +52,9 @@ ShaderForge.meta
 TestShaders.meta
 TestTextures.meta
 TestMaterials.meta
+
+# ============ #
+# TextMesh Pro #
+# ============ #
+
+[Tt]extMesh Pro/
