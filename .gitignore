@@ -34,3 +34,16 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# =========== #
+# ShaderForge #
+# =========== #
+
+[Ss]haderForge/
+[Tt]estShaders/
+[Tt]estTextures/
+[Tt]estMaterials/
+ShaderForge.meta
+TestShaders.meta
+TestTextures.meta
+TestMaterials.meta
