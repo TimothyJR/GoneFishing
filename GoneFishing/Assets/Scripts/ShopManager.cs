@@ -11,8 +11,13 @@ public class ShopManager : MonoBehaviour {
 	[SerializeField] private GameObject buttonInputPrompt;
 	[SerializeField] private BoatStats boatStats;
 	[SerializeField] private FishHandler fishHandler;
+    [SerializeField] private AudioSource shopsound;
 
-	[SerializeField] private TextMeshProUGUI lineLengthText;
+    [SerializeField] private AudioClip openshopsound;
+    [SerializeField] private AudioClip closeshopsound;
+    [SerializeField] private AudioClip purchasesound;
+
+    [SerializeField] private TextMeshProUGUI lineLengthText;
 	[SerializeField] private TextMeshProUGUI baitRangeText;
 	[SerializeField] private TextMeshProUGUI baitStrengthText;
 	[SerializeField] private TextMeshProUGUI carryCapacityText;
@@ -49,7 +54,9 @@ public class ShopManager : MonoBehaviour {
 
 	private void OpenShop()
 	{
-		boatStats.gameObject.GetComponent<BoatController>().CanMove = false;
+        shopsound.PlayOneShot(openshopsound, .5f);
+
+        boatStats.gameObject.GetComponent<BoatController>().CanMove = false;
 		currencyText.gameObject.SetActive(false);
 		fishCaughtText.gameObject.SetActive(false);
 		shop.SetActive(true);
@@ -59,7 +66,9 @@ public class ShopManager : MonoBehaviour {
 
 	public void CloseShop()
 	{
-		boatStats.gameObject.GetComponent<BoatController>().CanMove = true;
+        shopsound.PlayOneShot(closeshopsound, .5f);
+
+        boatStats.gameObject.GetComponent<BoatController>().CanMove = true;
 		currencyText.gameObject.SetActive(true);
 		fishCaughtText.gameObject.SetActive(true);
 		shop.SetActive(false);
@@ -77,7 +86,9 @@ public class ShopManager : MonoBehaviour {
 		int rangeCost = (int)(9 + Mathf.Pow(10, baitRangeLevel / 10));
 		if (currency > rangeCost)
 		{
-			boatStats.IncreaseBaitRangeLevel(baitRangeLevel);
+            PlayPurchaseSound();
+
+            boatStats.IncreaseBaitRangeLevel(baitRangeLevel);
 			currency -= rangeCost;
 			baitRangeLevel++;
 			rangeCost = (int)(9 + Mathf.Pow(10, baitRangeLevel / 10));
@@ -90,7 +101,9 @@ public class ShopManager : MonoBehaviour {
 		int strengthCost = (int)(9 + Mathf.Pow(10, baitStrengthLevel / 10));
 		if (currency > strengthCost)
 		{
-			boatStats.IncreaseBaitStrengthLevel(baitStrengthLevel);
+            PlayPurchaseSound();
+
+            boatStats.IncreaseBaitStrengthLevel(baitStrengthLevel);
 			currency -= strengthCost;
 			baitStrengthLevel++;
 			strengthCost = (int)(9 + Mathf.Pow(10, baitStrengthLevel / 10));
@@ -103,7 +116,9 @@ public class ShopManager : MonoBehaviour {
 		int lineCost = (int)(9 + Mathf.Pow(10, lineLengthLevel / 10));
 		if(currency > lineCost)
 		{
-			boatStats.IncreaseLineLength(lineLengthLevel);
+            PlayPurchaseSound();
+
+            boatStats.IncreaseLineLength(lineLengthLevel);
 			currency -= lineCost;
 			lineLengthLevel++;
 			lineCost = (int)(9 + Mathf.Pow(10, lineLengthLevel / 10));
@@ -116,7 +131,9 @@ public class ShopManager : MonoBehaviour {
 		int carryCost = (int)(9 + Mathf.Pow(10, carryCapacityLevel / 10));
 		if (currency > carryCost)
 		{
-			boatStats.IncreaseCarryAmount(carryCapacityLevel);
+            PlayPurchaseSound();
+
+            boatStats.IncreaseCarryAmount(carryCapacityLevel);
 			currency -= carryCost;
 			carryCapacityLevel++;
 			carryCost = (int)(9 + Mathf.Pow(10, carryCapacityLevel / 10));
@@ -124,6 +141,10 @@ public class ShopManager : MonoBehaviour {
 		}
 	}
 
+    private void PlayPurchaseSound()
+    {
+        shopsound.PlayOneShot(purchasesound, .5f);
+    }
 
 	private void ShowButtonPrompt()
 	{

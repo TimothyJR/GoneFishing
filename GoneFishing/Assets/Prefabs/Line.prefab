@@ -68,7 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f3d9dac6d382944bce5854af4f461e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLineLength: 15
   jointLength: 0.15
   joint: {fileID: 1262146648059298, guid: 0fe6bbd026a5cef4aa89ee6c0d3dd1fb, type: 2}
 --- !u!120 &120970865626508680

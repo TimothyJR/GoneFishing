@@ -10,10 +10,12 @@ public class FishHandler : MonoBehaviour
 	[SerializeField] private GameObject boat;
 	[SerializeField] private TextMeshProUGUI fishCaughtText;
 	[SerializeField] private SeaFloor seaFloor;
+    [SerializeField] private AudioClip fishysound;
 
-	private BoatStats boatStats;
+    private BoatStats boatStats;
 	private ZoneHandler zoneHandler;
 	private FishingLine line;
+    private AudioSource boataudio;
 	private int amountCaught;
 	private bool maxCaptured = false;
 	List<GameObject> spawnedFish;
@@ -27,7 +29,9 @@ public class FishHandler : MonoBehaviour
 
 	private void Start()
 	{
-		spawnedFish = new List<GameObject>();
+        boataudio = boat.GetComponent<AudioSource>();
+
+        spawnedFish = new List<GameObject>();
 		line = boat.GetComponent<BoatLine>().Line.GetComponent<FishingLine>();
 		boatStats = boat.GetComponent<BoatStats>();
 		zoneHandler = gameObject.GetComponent<ZoneHandler>();
@@ -77,7 +81,9 @@ public class FishHandler : MonoBehaviour
 				{
 					if (FishCaught != null)
 					{
-						amountCaught += 1;
+                        boataudio.PlayOneShot(fishysound, .10f);
+
+                        amountCaught += 1;
 						fishCaughtText.text = fishCaughtText.text = "Fish Caught " + amountCaught + "/" + boatStats.CarryAmount;
 						FishCaught(5);
 					}

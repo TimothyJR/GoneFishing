@@ -8,8 +8,8 @@ public class FishingLine : MonoBehaviour {
 	[SerializeField] private float jointLength = 0.1f;
 	[SerializeField] private GameObject joint;
 
-	private BoatStats boatStats;
-	private List<GameObject> joints;
+    private BoatStats boatStats;
+    private List<GameObject> joints;
 	private GameObject endJoint;
 	private LineRenderer lineRenderer;
 
@@ -25,7 +25,7 @@ public class FishingLine : MonoBehaviour {
 	// Use this for initialization
 	private void Start ()
 	{
-		joints = new List<GameObject>();
+        joints = new List<GameObject>();
 		lineRenderer = GetComponent<LineRenderer>();
 	}
 	
