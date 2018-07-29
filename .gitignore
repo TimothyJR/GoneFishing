@@ -39,6 +39,7 @@ sysinfo.txt
 # ============================ #
 *.fbx
 *.png
+*.wav
 
 # =========== #
 # ShaderForge #
