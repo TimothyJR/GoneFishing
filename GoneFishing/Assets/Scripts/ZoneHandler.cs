@@ -7,6 +7,7 @@ public class ZoneHandler : MonoBehaviour {
 	[SerializeField] private GameObject boat;
 	[SerializeField] private SectionDividers[] sectionDividers;
 	[SerializeField] private float finalZoneLength = 30.0f;
+	[SerializeField] private TransitionTextFade zoneTransitionText;
 	private int currentZone = 0;
 	private float zoneBorderLeft = 0;
 	private float zoneBorderRight = 0;
@@ -26,6 +27,8 @@ public class ZoneHandler : MonoBehaviour {
 	public GameObject[] CurrentFishList
 	{ get { return sectionDividers[currentZone].SectionFish; } }
 
+	public string CurrentZoneName
+	{ get { return sectionDividers[currentZone].SectionName; } }
 
 	private void Start()
 	{
@@ -70,6 +73,8 @@ public class ZoneHandler : MonoBehaviour {
 	public void IncrementZone()
 	{
 		currentZone++;
+		zoneTransitionText.gameObject.SetActive(true);
+		zoneTransitionText.IncrementZone(this);
 		zoneBorderLeft = sectionDividers[currentZone].DividerObject.transform.position.x;
 
 		if (currentZone < sectionDividers.Length - 1)
@@ -96,7 +101,8 @@ public class ZoneHandler : MonoBehaviour {
 	{
 		zoneBorderRight = sectionDividers[currentZone].DividerObject.transform.position.x;
 		currentZone--;
-
+		zoneTransitionText.gameObject.SetActive(true);
+		zoneTransitionText.DecrementZone(this);
 		if (currentZone == 0)
 		{
 			zoneBorderLeft = 0;
@@ -117,6 +123,7 @@ public class ZoneHandler : MonoBehaviour {
 		}
 		
 	}
+
 }
 
 
