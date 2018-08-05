@@ -10,6 +10,8 @@ public class FishHandler : MonoBehaviour
 	[SerializeField] private GameObject boat;
 	[SerializeField] private TextMeshProUGUI fishCaughtText;
 	[SerializeField] private SeaFloor seaFloor;
+	[SerializeField] private float fishMinScale = 0.6f;
+	[SerializeField] private float fishMaxScale = 1.2f;
     [SerializeField] private AudioClip fishysound;
 
     private BoatStats boatStats;
@@ -68,6 +70,7 @@ public class FishHandler : MonoBehaviour
 		instantiatedFish.transform.position = position;
 		instantiatedFish.GetComponent<FishBehaviors>().FishStart(boat.GetComponent<BoatStats>());
 		instantiatedFish.GetComponent<FishBehaviors>().Handler = this;
+		instantiatedFish.transform.GetChild(0).transform.localScale = new Vector3(Random.Range(fishMinScale, fishMaxScale), Random.Range(fishMinScale, fishMaxScale), Random.Range(fishMinScale, fishMaxScale));
 		spawnedFish.Add(instantiatedFish);
 	}
 
