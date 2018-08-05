@@ -15,6 +15,8 @@ public class FishBehaviors : MonoBehaviour
 	[SerializeField] private float wanderXRange = 20.0f;
 	[SerializeField] private float wanderYRange = 5.0f;
 
+	[SerializeField] private int fishWorth = 5;
+
 	[Header("Force Weights")]
 	[SerializeField] private float wanderWeight = 0.9f;
 	[SerializeField] private float preferedDepthWeight = 0.3f;
@@ -28,6 +30,9 @@ public class FishBehaviors : MonoBehaviour
 	{
 		set { handler = value; }
 	}
+
+	public int FishWorth
+	{ get { return fishWorth; } }
 
 	public void FishStart(BoatStats stats)
 	{

@@ -85,7 +85,7 @@ public class FishHandler : MonoBehaviour
 
                         amountCaught += 1;
 						fishCaughtText.text = fishCaughtText.text = "Fish Caught " + amountCaught + "/" + boatStats.CarryAmount;
-						FishCaught(5);
+						FishCaught(fish.GetComponent<FishBehaviors>().FishWorth);
 					}
 					spawnedFish.Remove(fish);
 					Destroy(fish);

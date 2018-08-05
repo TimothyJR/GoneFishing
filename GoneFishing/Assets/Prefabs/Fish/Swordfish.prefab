@@ -100,6 +100,7 @@ MonoBehaviour:
   preferedDepethLevel: -5
   wanderXRange: 20
   wanderYRange: 5
+  fishWorth: 7
   wanderWeight: 0.9
   preferedDepthWeight: 0.3
   baitWeight: 0.1

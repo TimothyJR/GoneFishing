@@ -1164,7 +1164,8 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 12.973001
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114452283423054944, guid: 73eebf76dbb414e4cb193c1d8dca505b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 73eebf76dbb414e4cb193c1d8dca505b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &373824539
@@ -1222,7 +1223,8 @@ Prefab:
       propertyPath: m_Name
       value: RegularFish (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114452283423054944, guid: 73eebf76dbb414e4cb193c1d8dca505b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 73eebf76dbb414e4cb193c1d8dca505b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &423227255
@@ -2998,7 +3000,8 @@ Prefab:
       propertyPath: m_Name
       value: RegularFish (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114452283423054944, guid: 73eebf76dbb414e4cb193c1d8dca505b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 73eebf76dbb414e4cb193c1d8dca505b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1091131790
@@ -3254,7 +3257,8 @@ Prefab:
       propertyPath: m_Name
       value: Swordfish (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114044286288123348, guid: 4809725c4917079489cca2ca93e00936, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4809725c4917079489cca2ca93e00936, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1256627688
@@ -3625,7 +3629,8 @@ Prefab:
       propertyPath: m_Name
       value: Swordfish (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114044286288123348, guid: 4809725c4917079489cca2ca93e00936, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4809725c4917079489cca2ca93e00936, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1417735664
@@ -4195,7 +4200,8 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 1.8330001
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114044286288123348, guid: 4809725c4917079489cca2ca93e00936, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4809725c4917079489cca2ca93e00936, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1738213008
@@ -4724,7 +4730,8 @@ Prefab:
       propertyPath: m_Name
       value: RegularFish (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114452283423054944, guid: 73eebf76dbb414e4cb193c1d8dca505b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 73eebf76dbb414e4cb193c1d8dca505b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1960554287
