@@ -27,6 +27,12 @@ public class Water : MonoBehaviour
 	[SerializeField] private float bottom = -30.0f;
 	[SerializeField] private float zPosition = -1.0f;
 
+	public float Left
+	{ get { return left; } }
+
+	public float Width
+	{ get { return width; } }
+
 
 	void Start ()
 	{
