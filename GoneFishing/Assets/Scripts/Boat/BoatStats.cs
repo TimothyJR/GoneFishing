@@ -12,7 +12,7 @@ public class BoatStats : MonoBehaviour {
 	private float baitRange = 1.0f;
 	private float baitStrength = 1.0f;
 	private int lineLength = 25;
-	private int carryAmount = 10;
+	private int carryAmount = 20;
 
 	public float BaitRange { get { return baitRange; } }
 	public float BaitStrength { get { return baitStrength; } }
@@ -38,6 +38,6 @@ public class BoatStats : MonoBehaviour {
 
 	public void IncreaseCarryAmount(int level)
 	{
-		carryAmount = BASE_CARRY_AMOUNT + (level * 2);
+		carryAmount = BASE_CARRY_AMOUNT + (level * 5);
 	}
 }

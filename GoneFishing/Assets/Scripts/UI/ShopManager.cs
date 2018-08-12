@@ -5,6 +5,7 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour {
 
+	[SerializeField] private int currency = 0;
 	[SerializeField] private TextMeshProUGUI currencyText;
 	[SerializeField] private TextMeshProUGUI fishCaughtText;
 	[SerializeField] private GameObject shop;
@@ -13,10 +14,13 @@ public class ShopManager : MonoBehaviour {
 	[SerializeField] private FishHandler fishHandler;
     [SerializeField] private AudioSource shopsound;
 
+	[Header("Sounds")]
     [SerializeField] private AudioClip openshopsound;
     [SerializeField] private AudioClip closeshopsound;
     [SerializeField] private AudioClip purchasesound;
 
+
+	[Header("UI Components")]
     [SerializeField] private TextMeshProUGUI lineLengthText;
 	[SerializeField] private TextMeshProUGUI baitRangeText;
 	[SerializeField] private TextMeshProUGUI baitStrengthText;
@@ -27,12 +31,27 @@ public class ShopManager : MonoBehaviour {
 	private int baitStrengthLevel = 1;
 	private int carryCapacityLevel = 1;
 
+	private int lineCost;
+	private int rangeCost;
+	private int strengthCost;
+	private int carryCost;
+
 	private bool checkForInput = false;
-	[SerializeField] private int currency = 0;
+
+	
 
 	private void Start()
 	{
 		FishHandler.FishCaught += AddToCurrency;
+		lineCost = (int)(9.0f + Mathf.Pow(10.0f, lineLengthLevel / 3.0f));
+		rangeCost = (int)(9.0f + Mathf.Pow(10.0f, baitRangeLevel / 3.0f));
+		strengthCost = (int)(9.0f + Mathf.Pow(10.0f, baitStrengthLevel / 3.0f));
+		carryCost = (int)(9.0f + Mathf.Pow(10.0f, carryCapacityLevel / 3.0f));
+		baitRangeText.text = "$" + rangeCost;
+		lineLengthText.text = "$" + lineCost;
+		baitStrengthText.text = "$" + strengthCost;
+		carryCapacityText.text = "$" + carryCost;
+
 	}
 
 	private void Update()
@@ -83,7 +102,6 @@ public class ShopManager : MonoBehaviour {
 
 	public void BuyBaitRange()
 	{
-		int rangeCost = (int)(9 + Mathf.Pow(10, baitRangeLevel / 10));
 		if (currency > rangeCost)
 		{
             PlayPurchaseSound();
@@ -91,14 +109,13 @@ public class ShopManager : MonoBehaviour {
             boatStats.IncreaseBaitRangeLevel(baitRangeLevel);
 			currency -= rangeCost;
 			baitRangeLevel++;
-			rangeCost = (int)(9 + Mathf.Pow(10, baitRangeLevel / 10));
+			rangeCost = (int)(9.0f + Mathf.Pow(10.0f, baitRangeLevel / 3.0f));
 			baitRangeText.text = "$" + rangeCost;
 		}
 	}
 
 	public void BuyBaitStrength()
 	{
-		int strengthCost = (int)(9 + Mathf.Pow(10, baitStrengthLevel / 10));
 		if (currency > strengthCost)
 		{
             PlayPurchaseSound();
@@ -106,14 +123,13 @@ public class ShopManager : MonoBehaviour {
             boatStats.IncreaseBaitStrengthLevel(baitStrengthLevel);
 			currency -= strengthCost;
 			baitStrengthLevel++;
-			strengthCost = (int)(9 + Mathf.Pow(10, baitStrengthLevel / 10));
-			baitStrengthText.text = "$" + baitStrengthLevel;
+			strengthCost = (int)(9.0f + Mathf.Pow(10.0f, baitStrengthLevel / 3.0f));
+			baitStrengthText.text = "$" + strengthCost;
 		}
 	}
 
 	public void BuyLineLength()
 	{
-		int lineCost = (int)(9 + Mathf.Pow(10, lineLengthLevel / 10));
 		if(currency > lineCost)
 		{
             PlayPurchaseSound();
@@ -121,14 +137,13 @@ public class ShopManager : MonoBehaviour {
             boatStats.IncreaseLineLength(lineLengthLevel);
 			currency -= lineCost;
 			lineLengthLevel++;
-			lineCost = (int)(9 + Mathf.Pow(10, lineLengthLevel / 10));
+			lineCost = (int)(9.0f + Mathf.Pow(10.0f, lineLengthLevel / 3.0f));
 			lineLengthText.text = "$" + lineCost;
 		}
 	}
 
 	public void BuyCarryCapacity()
 	{
-		int carryCost = (int)(9 + Mathf.Pow(10, carryCapacityLevel / 10));
 		if (currency > carryCost)
 		{
             PlayPurchaseSound();
@@ -136,7 +151,7 @@ public class ShopManager : MonoBehaviour {
             boatStats.IncreaseCarryAmount(carryCapacityLevel);
 			currency -= carryCost;
 			carryCapacityLevel++;
-			carryCost = (int)(9 + Mathf.Pow(10, carryCapacityLevel / 10));
+			carryCost = (int)(9.0f + Mathf.Pow(10.0f, carryCapacityLevel / 3.0f));
 			carryCapacityText.text = "$" + carryCost;
 		}
 	}

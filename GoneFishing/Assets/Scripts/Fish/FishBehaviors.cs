@@ -23,7 +23,11 @@ public class FishBehaviors : MonoBehaviour
 	[SerializeField] private float baitWeight = 0.1f;
 	[SerializeField] private float zoneWeight = 4.0f;
 	[SerializeField] private float minDepthWeight = 1.0f;
+	[SerializeField] private float stayAboveGroundWeight = 1.0f;
+	[SerializeField] private float stayTowardsDeepEndWeight = 1.0f;
 
+
+	private bool disableWanderPoint = false;
 	private FishHandler handler;
 
 	public FishHandler Handler
@@ -63,34 +67,56 @@ public class FishBehaviors : MonoBehaviour
 
 		// Wander the fish around
 		applicationForce += Wander(time) * wanderWeight;
-
+		
+		
 		// Keep fishes towards their prefered depth
-		applicationForce += Seek(new Vector3(transform.position.x, preferedDepethLevel, 0)) * preferedDepthWeight * ((transform.position.y - preferedDepethLevel) / 4);
+		applicationForce += Seek(new Vector3(transform.position.x, preferedDepethLevel, 0.0f)) * preferedDepthWeight * Mathf.Abs((transform.position.y - preferedDepethLevel) / 4);
 
-		if(transform.position.y > minDepthLevel)
+		
+
+		// Keep below minimum depth
+		if (transform.position.y > minDepthLevel)
 		{
 			applicationForce += Seek(new Vector3(transform.position.x, minDepthLevel - 1)) * minDepthWeight;
 		}
-
+		
+		
 		// Keep in zones
-		if(transform.position.x > zoneRight || transform.position.x < zoneLeft)
+	   if (transform.position.x > zoneRight || transform.position.x < zoneLeft)
 		{
 			applicationForce += Seek(new Vector3(Random.Range(zoneLeft, zoneRight), transform.position.y, 0.0f)) * zoneWeight;
 		}
-
-		// Apply force for bait if within range
-		if(!handler.MaxCaptured)
-		{
-			if (handler.LineEndPosition() != Vector3.zero)
-			{
-				if (Vector3.Distance(transform.position, handler.LineEndPosition()) < boatStats.BaitRange)
-				{
-					applicationForce += Seek(handler.LineEndPosition()) * baitWeight * boatStats.BaitStrength;
-				}
-			}
-		}
 		
 
+		// Keep above ground
+		if (transform.position.y < handler.SampleGround(transform.position.x) + 0.5f)
+		{
+			applicationForce += Seek(new Vector3(transform.position.x, Random.Range(handler.SampleGround(transform.position.x) + 1.0f, -1.0f), 0.0f)) * stayAboveGroundWeight;
+			DisableWandering();
+		}
+		
+		
+
+		// Keep in deeper water if the fish prefers to be deep
+		if (handler.SampleGround(transform.position.x) > preferedDepethLevel)
+		{
+			applicationForce += Seek(new Vector3(transform.position.x + Random.Range(0.0f, wanderXRange), transform.position.y, 0.0f)) * stayTowardsDeepEndWeight;
+			DisableWandering();
+		}
+		
+		
+
+		// Apply force for bait if within range
+		if (handler.LineEndPosition() != Vector3.zero)
+		{
+			if (Vector3.Distance(transform.position, handler.LineEndPosition()) < boatStats.BaitRange)
+			{
+				applicationForce += Seek(handler.LineEndPosition()) * baitWeight * boatStats.BaitStrength;
+			}
+		}
+	
+
+		
 		acceleration += applicationForce;
 	}
 
@@ -99,7 +125,17 @@ public class FishBehaviors : MonoBehaviour
 	{
 		Vector3 center = transform.position;
 
-		if(wanderCounter >= 2)
+		if (disableWanderPoint)
+		{
+			wanderCounter += time;
+			if (wanderCounter >= 2.0f)
+			{
+				disableWanderPoint = false;
+			}
+			return Vector3.zero;
+		}
+
+		if (wanderCounter >= 2 || Vector3.Distance(transform.position, wanderPoint) < 0.1f)
 		{
 			wanderCounter = 0;
 			float x = center.x + Random.Range(-wanderXRange, wanderXRange);
@@ -112,7 +148,7 @@ public class FishBehaviors : MonoBehaviour
 			}
 			else if (center.y - wanderYRange < groundPosition)
 			{
-				y = center.y + Random.Range(groundPosition - center.y, wanderYRange);
+				y = center.y + Random.Range(groundPosition - center.y + 0.8f, wanderYRange);
 			}
 			else if(center.y + wanderYRange > 0.0f)
 			{
@@ -127,7 +163,14 @@ public class FishBehaviors : MonoBehaviour
 		}
 
 		wanderCounter += time;
+
 		return Seek(wanderPoint);
+	}
+
+	private void DisableWandering()
+	{
+		wanderCounter = 0.0f;
+		disableWanderPoint = true;
 	}
 
 	// Return a vector pointing towards the input position

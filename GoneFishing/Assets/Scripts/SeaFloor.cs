@@ -89,6 +89,6 @@ public class SeaFloor : MonoBehaviour {
 			return yPositions[index];
 		}
 
-		return 0.0f;
+		return bottom;
 	}
 }

@@ -50,7 +50,7 @@ public class FishHandler : MonoBehaviour
 			{
 				int fishIndex = Random.Range(0, fishList.Length);
 				float x = Random.Range(zoneHandler.ZoneBorderLeft, zoneHandler.ZoneBorderRight);
-				float y = Random.Range(-1, seaFloor.SampleGround(x));
+				float y = Random.Range(-1.5f, seaFloor.SampleGround(x)) + 1.0f;
 				SpawnFish(fishList[fishIndex], new Vector3(x, y));
 			}
 		}
