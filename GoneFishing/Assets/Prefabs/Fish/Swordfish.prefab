@@ -130,8 +130,17 @@ MonoBehaviour:
   wanderXRange: 20
   wanderYRange: 5
   fishWorth: 7
-  wanderWeight: 0.9
-  preferedDepthWeight: 0.3
+  wanderWeight: 0.1
+  preferedDepthWeight: 0.05
   baitWeight: 0.1
   zoneWeight: 4
-  minDepthWeight: 1
+  minDepthWeight: 0.2
+  stayAboveGroundWeight: 0.2
+  stayTowardsDeepEndWeight: 1
+  wanderSwitch: 1
+  preferedDepthSwitch: 1
+  baitSwitch: 1
+  zoneSwitch: 1
+  minDepthSwitch: 1
+  stayAboveGroundSwitch: 1
+  stayTowardsDeepEndSwitch: 1

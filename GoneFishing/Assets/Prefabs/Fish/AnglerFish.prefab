@@ -126,12 +126,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 2
   minDepthLevel: -1
-  preferedDepethLevel: -7
+  preferedDepethLevel: -8.5
   wanderXRange: 20
   wanderYRange: 5
   fishWorth: 20
-  wanderWeight: 0.9
-  preferedDepthWeight: 0.3
+  wanderWeight: 0.1
+  preferedDepthWeight: 0.08
   baitWeight: 0.1
   zoneWeight: 4
-  minDepthWeight: 1
+  minDepthWeight: 0.3
+  stayAboveGroundWeight: 0.2
+  stayTowardsDeepEndWeight: 1
+  wanderSwitch: 1
+  preferedDepthSwitch: 1
+  baitSwitch: 1
+  zoneSwitch: 1
+  minDepthSwitch: 1
+  stayAboveGroundSwitch: 1
+  stayTowardsDeepEndSwitch: 1

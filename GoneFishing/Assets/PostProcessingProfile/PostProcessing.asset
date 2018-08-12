@@ -25,7 +25,7 @@ MonoBehaviour:
         motionVectorsResolution: 24
         motionVectorsAmplitude: 64
   fog:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       excludeSkybox: 1
   antialiasing:
@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 1.8
+        intensity: 1.08
         threshold: 1.1
         softKnee: 0.5
         radius: 1.01
@@ -109,7 +109,7 @@ MonoBehaviour:
         texture: {fileID: 0}
         intensity: 3
   colorGrading:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       tonemapping:
         tonemapper: 0
@@ -124,8 +124,8 @@ MonoBehaviour:
         temperature: 0
         tint: 0
         hueShift: 0
-        saturation: 1
-        contrast: 1
+        saturation: 1.08
+        contrast: 1.08
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -138,9 +138,9 @@ MonoBehaviour:
           power: {r: 1, g: 1, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
-          lift: {r: 1, g: 1, b: 1, a: 0}
-          gamma: {r: 0.9356853, g: 0.95856047, b: 1, a: 0}
-          gain: {r: 1, g: 1, b: 1, a: 0}
+          lift: {r: 0.98898095, g: 0.9585869, b: 1, a: 0}
+          gamma: {r: 0.9788255, g: 0.9775402, b: 1, a: 0}
+          gain: {r: 0.9788255, g: 0.9775402, b: 1, a: 0}
       curves:
         master:
           curve:
@@ -313,9 +313,9 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       colored: 0
-      intensity: 0.058
+      intensity: 0.044
       size: 1.06
-      luminanceContribution: 0.876
+      luminanceContribution: 0.852
   vignette:
     m_Enabled: 1
     m_Settings:
