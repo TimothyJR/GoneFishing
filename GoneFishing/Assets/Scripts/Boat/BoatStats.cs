@@ -6,12 +6,12 @@ public class BoatStats : MonoBehaviour {
 
 	private const float BASE_BAIT_RANGE = 1.0f;
 	private const float BASE_BAIT_STRENGTH = 1.0f;
-	private const int BASE_LINE_LENGTH = 25;
+	private const int BASE_LINE_LENGTH = 28;
 	private const int BASE_CARRY_AMOUNT = 10;
 
 	private float baitRange = 1.0f;
 	private float baitStrength = 1.0f;
-	private int lineLength = 25;
+	private int lineLength = 28;
 	private int carryAmount = 20;
 
 	public float BaitRange { get { return baitRange; } }
@@ -23,7 +23,7 @@ public class BoatStats : MonoBehaviour {
 
 	public void IncreaseBaitRangeLevel(int level)
 	{
-		baitRange = (level * 0.1f) + BASE_BAIT_RANGE;
+		baitRange = (level * 0.4f) + BASE_BAIT_RANGE;
 	}
 
 	public void IncreaseBaitStrengthLevel(int level)

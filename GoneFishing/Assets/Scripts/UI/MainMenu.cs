@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void PlayGame()
 	{
+		Cursor.visible = false;
 		SceneManager.LoadScene("Level");
 	}
 

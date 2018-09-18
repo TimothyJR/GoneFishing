@@ -10,7 +10,9 @@ using UnityEngine;
 public class BoatLine : MonoBehaviour {
 
 	[SerializeField] private GameObject line;
+	[SerializeField] private Transform linePosition;
 	private GameObject lineInstance;
+	
 
 	public GameObject Line
 	{
@@ -20,14 +22,15 @@ public class BoatLine : MonoBehaviour {
 	private void Start ()
 	{
 		lineInstance = GameObject.Instantiate(line);
-		lineInstance.transform.position = transform.position;
+		lineInstance.transform.position = linePosition.position;
 		lineInstance.GetComponent<FishingLine>().boatStatistics = this.GetComponent<BoatStats>();
 	}
 	
 	private void FixedUpdate ()
 	{
-		float direction = -Mathf.Sign(transform.rotation.y);
+		float direction = -3 * Mathf.Sign(transform.rotation.y);
 
-		lineInstance.transform.position = new Vector3(transform.position.x + direction, transform.position.y, transform.position.z);
+		//lineInstance.transform.position = new Vector3(transform.position.x + direction, transform.position.y, transform.position.z);
+		lineInstance.transform.position = new Vector3(linePosition.position.x, linePosition.position.y, transform.position.z);
 	}
 }

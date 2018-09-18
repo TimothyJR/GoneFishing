@@ -43,10 +43,10 @@ public class ShopManager : MonoBehaviour {
 	private void Start()
 	{
 		FishHandler.FishCaught += AddToCurrency;
-		lineCost = (int)(9.0f + Mathf.Pow(10.0f, lineLengthLevel / 3.0f));
-		rangeCost = (int)(9.0f + Mathf.Pow(10.0f, baitRangeLevel / 3.0f));
-		strengthCost = (int)(9.0f + Mathf.Pow(10.0f, baitStrengthLevel / 3.0f));
-		carryCost = (int)(9.0f + Mathf.Pow(10.0f, carryCapacityLevel / 3.0f));
+		lineCost = (int)Mathf.Clamp((9.0f + Mathf.Pow(10.0f, lineLengthLevel / 3.0f)), 0.0f, 1000.0f);
+		rangeCost = (int)Mathf.Clamp((9.0f + Mathf.Pow(10.0f, baitRangeLevel / 3.0f)), 0.0f, 1000.0f);
+		strengthCost = (int)Mathf.Clamp((9.0f + Mathf.Pow(10.0f, baitStrengthLevel / 3.0f)), 0.0f, 1000.0f);
+		carryCost = (int)Mathf.Clamp((9.0f + Mathf.Pow(10.0f, carryCapacityLevel / 3.0f)), 0.0f, 1000.0f);
 		baitRangeText.text = "$" + rangeCost;
 		lineLengthText.text = "$" + lineCost;
 		baitStrengthText.text = "$" + strengthCost;
@@ -76,10 +76,10 @@ public class ShopManager : MonoBehaviour {
         shopsound.PlayOneShot(openshopsound, .5f);
 
         boatStats.gameObject.GetComponent<BoatController>().CanMove = false;
-		currencyText.gameObject.SetActive(false);
 		fishCaughtText.gameObject.SetActive(false);
 		shop.SetActive(true);
 		HideButtonPrompt();
+		Cursor.visible = true;
 
 	}
 
@@ -88,11 +88,11 @@ public class ShopManager : MonoBehaviour {
         shopsound.PlayOneShot(closeshopsound, .5f);
 
         boatStats.gameObject.GetComponent<BoatController>().CanMove = true;
-		currencyText.gameObject.SetActive(true);
 		fishCaughtText.gameObject.SetActive(true);
 		shop.SetActive(false);
 		UpdateCurrencyText();
 		ShowButtonPrompt();
+		Cursor.visible = false;
 	}
 
 	private void UpdateCurrencyText()
@@ -109,8 +109,9 @@ public class ShopManager : MonoBehaviour {
             boatStats.IncreaseBaitRangeLevel(baitRangeLevel);
 			currency -= rangeCost;
 			baitRangeLevel++;
-			rangeCost = (int)(9.0f + Mathf.Pow(10.0f, baitRangeLevel / 3.0f));
+			rangeCost = (int)Mathf.Clamp((9.0f + Mathf.Pow(10.0f, baitRangeLevel / 3.0f)), 0.0f, 1000.0f);
 			baitRangeText.text = "$" + rangeCost;
+			UpdateCurrencyText();
 		}
 	}
 
@@ -123,8 +124,9 @@ public class ShopManager : MonoBehaviour {
             boatStats.IncreaseBaitStrengthLevel(baitStrengthLevel);
 			currency -= strengthCost;
 			baitStrengthLevel++;
-			strengthCost = (int)(9.0f + Mathf.Pow(10.0f, baitStrengthLevel / 3.0f));
+			strengthCost = (int)Mathf.Clamp((9.0f + Mathf.Pow(10.0f, baitStrengthLevel / 3.0f)), 0.0f, 1000.0f);
 			baitStrengthText.text = "$" + strengthCost;
+			UpdateCurrencyText();
 		}
 	}
 
@@ -137,8 +139,9 @@ public class ShopManager : MonoBehaviour {
             boatStats.IncreaseLineLength(lineLengthLevel);
 			currency -= lineCost;
 			lineLengthLevel++;
-			lineCost = (int)(9.0f + Mathf.Pow(10.0f, lineLengthLevel / 3.0f));
+			lineCost = (int)Mathf.Clamp((9.0f + Mathf.Pow(10.0f, lineLengthLevel / 3.0f)), 0.0f, 1000.0f);
 			lineLengthText.text = "$" + lineCost;
+			UpdateCurrencyText();
 		}
 	}
 
@@ -151,8 +154,9 @@ public class ShopManager : MonoBehaviour {
             boatStats.IncreaseCarryAmount(carryCapacityLevel);
 			currency -= carryCost;
 			carryCapacityLevel++;
-			carryCost = (int)(9.0f + Mathf.Pow(10.0f, carryCapacityLevel / 3.0f));
+			carryCost = (int)Mathf.Clamp((9.0f + Mathf.Pow(10.0f, carryCapacityLevel / 3.0f)), 0.0f, 1000.0f);
 			carryCapacityText.text = "$" + carryCost;
+			UpdateCurrencyText();
 		}
 	}
 

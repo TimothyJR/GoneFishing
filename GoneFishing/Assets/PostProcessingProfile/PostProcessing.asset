@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -100,8 +100,8 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 1.08
-        threshold: 1.1
+        intensity: 1
+        threshold: 1.15
         softKnee: 0.5
         radius: 1.01
         antiFlicker: 0
@@ -117,20 +117,20 @@ MonoBehaviour:
         neutralWhiteIn: 10
         neutralBlackOut: 0
         neutralWhiteOut: 10
-        neutralWhiteLevel: 5.3
+        neutralWhiteLevel: 3.8
         neutralWhiteClip: 10
       basic:
         postExposure: 0
-        temperature: 0
+        temperature: 2
         tint: 0
-        hueShift: 0
-        saturation: 1.08
-        contrast: 1.08
+        hueShift: 2
+        saturation: 1.03
+        contrast: 1
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
         blue: {x: 0, y: 0, z: 1}
-        currentEditingChannel: 0
+        currentEditingChannel: 2
       colorWheels:
         mode: 0
         log:
@@ -138,9 +138,9 @@ MonoBehaviour:
           power: {r: 1, g: 1, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
-          lift: {r: 0.98898095, g: 0.9585869, b: 1, a: 0}
-          gamma: {r: 0.9788255, g: 0.9775402, b: 1, a: 0}
-          gain: {r: 0.9788255, g: 0.9775402, b: 1, a: 0}
+          lift: {r: 0.99196875, g: 1, b: 0.8846985, a: 0}
+          gamma: {r: 0.8387905, g: 0.8153395, b: 1, a: 0}
+          gain: {r: 0.7353115, g: 0.91867447, b: 1, a: 0}
       curves:
         master:
           curve:

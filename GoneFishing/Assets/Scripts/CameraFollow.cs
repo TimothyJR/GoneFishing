@@ -17,8 +17,7 @@ public class CameraFollow : MonoBehaviour
 	{
 		boatCamera = GetComponent<Camera>();
 		ZoneHandler.SectionChanged += ZoneChange;
-		yPosition = -(boatCamera.orthographicSize / 3);
-		desiredScale = (zoneHandler.CurrentZone + 1) * 4;
+		CalculatePositionAndScale();
 		CalculateCameraLimits();
 		this.transform.position = new Vector3(xLimitLeft, yPosition, -5);
 	
@@ -46,8 +45,7 @@ public class CameraFollow : MonoBehaviour
 
 	private void ZoneChange()
 	{
-		desiredScale = (zoneHandler.CurrentZone + 1) * 4;
-		yPosition = -(boatCamera.orthographicSize / 3);
+		CalculatePositionAndScale();
 		CalculateCameraLimits();
 		
 	}
@@ -62,5 +60,11 @@ public class CameraFollow : MonoBehaviour
 			xLimitLeft = (xLimitLeft + xLimitRight) / 2;
 			xLimitRight = xLimitLeft;
 		}
+	}
+
+	private void CalculatePositionAndScale()
+	{
+		desiredScale = (zoneHandler.CurrentZone + 1.5f) * 4;
+		yPosition = -(boatCamera.orthographicSize / 3);
 	}
 }
