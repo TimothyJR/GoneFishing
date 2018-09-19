@@ -65,3 +65,8 @@ TestMaterials.meta
 # Post Processing Stack #
 # ===================== #
 [Pp]ostProcessing
+
+# ======================= #
+# Include Showcase Images #
+# ======================= #
+!/Images/**
