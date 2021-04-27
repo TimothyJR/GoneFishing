@@ -27,6 +27,9 @@ public class ZoneHandler : MonoBehaviour {
 	public GameObject[] CurrentFishList
 	{ get { return sectionDividers[currentZone].SectionFish; } }
 
+	public int CurrentMaxFish
+	{ get { return sectionDividers[currentZone].MaxFish; } }
+
 	public string CurrentZoneName
 	{ get { return sectionDividers[currentZone].SectionName; } }
 

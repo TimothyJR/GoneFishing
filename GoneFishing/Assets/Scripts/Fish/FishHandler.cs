@@ -6,18 +6,17 @@ using TMPro;
 public class FishHandler : MonoBehaviour
 {
 	[SerializeField] private GameObject[] fishList;
-	[SerializeField] private int maxFish = 10;
 	[SerializeField] private GameObject boat;
 	[SerializeField] private TextMeshProUGUI fishCaughtText;
 	[SerializeField] private SeaFloor seaFloor;
 	[SerializeField] private float fishMinScale = 0.6f;
 	[SerializeField] private float fishMaxScale = 1.2f;
-    [SerializeField] private AudioClip fishysound;
+	[SerializeField] private AudioClip fishysound;
 
-    private BoatStats boatStats;
+	private BoatStats boatStats;
 	private ZoneHandler zoneHandler;
 	private FishingLine line;
-    private AudioSource boataudio;
+	private AudioSource boataudio;
 	private int amountCaught;
 	private bool maxCaptured = false;
 	List<GameObject> spawnedFish;
@@ -31,9 +30,9 @@ public class FishHandler : MonoBehaviour
 
 	private void Start()
 	{
-        boataudio = boat.GetComponent<AudioSource>();
+		boataudio = boat.GetComponent<AudioSource>();
 
-        spawnedFish = new List<GameObject>();
+		spawnedFish = new List<GameObject>();
 		line = boat.GetComponent<BoatLine>().Line.GetComponent<FishingLine>();
 		boatStats = boat.GetComponent<BoatStats>();
 		zoneHandler = gameObject.GetComponent<ZoneHandler>();
@@ -44,12 +43,30 @@ public class FishHandler : MonoBehaviour
 
 	private void Update()
 	{
-		if(spawnedFish.Count < maxFish)
+		if(spawnedFish.Count < zoneHandler.CurrentMaxFish)
 		{
 			if(Random.Range(0,100) < 1)
 			{
 				int fishIndex = Random.Range(0, fishList.Length);
-				float x = Random.Range(zoneHandler.ZoneBorderLeft, zoneHandler.ZoneBorderRight);
+
+				float x = 0.0f;
+				if(zoneHandler.CurrentZone != 0)
+				{
+					float side = Random.Range(0, 1);
+					if(side > 0)
+					{
+						x = zoneHandler.ZoneBorderRight + 3.0f;
+					}
+					else
+					{
+						x = zoneHandler.ZoneBorderLeft - 3.0f;
+					}
+				}
+				else
+				{
+					x = zoneHandler.ZoneBorderRight + 3.0f;
+				}
+
 				float y = Random.Range(-1.5f, seaFloor.SampleGround(x)) + 1.0f;
 				SpawnFish(fishList[fishIndex], new Vector3(x, y));
 			}
@@ -84,9 +101,9 @@ public class FishHandler : MonoBehaviour
 				{
 					if (FishCaught != null)
 					{
-                        boataudio.PlayOneShot(fishysound, .10f);
+						boataudio.PlayOneShot(fishysound, .10f);
 
-                        amountCaught += 1;
+						amountCaught += 1;
 						fishCaughtText.text = fishCaughtText.text = "Fish Caught " + amountCaught + "/" + boatStats.CarryAmount;
 						FishCaught(fish.GetComponent<FishBehaviors>().FishWorth);
 					}
@@ -137,4 +154,3 @@ public class FishHandler : MonoBehaviour
 		return seaFloor.SampleGround(x);
 	}
 }
-

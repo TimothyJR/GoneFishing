@@ -67,7 +67,7 @@ public class Wind : MonoBehaviour {
 	private void Reset()
 	{
 		float xPosition = gameCameraObject.transform.position.x - gameCamera.orthographicSize * 2;
-		float yPosition = Random.Range(0.4f, 2.0f);
+		float yPosition = Random.Range(0.4f, 3.0f);
 		transform.position = new Vector3(xPosition, yPosition, transform.position.z);
 		timer = 0;
 		looping = false;

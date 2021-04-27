@@ -28,9 +28,6 @@ public class BoatLine : MonoBehaviour {
 	
 	private void FixedUpdate ()
 	{
-		float direction = -3 * Mathf.Sign(transform.rotation.y);
-
-		//lineInstance.transform.position = new Vector3(transform.position.x + direction, transform.position.y, transform.position.z);
 		lineInstance.transform.position = new Vector3(linePosition.position.x, linePosition.position.y, transform.position.z);
 	}
 }
